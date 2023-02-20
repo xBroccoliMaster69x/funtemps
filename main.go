@@ -1,12 +1,14 @@
 package main
 
 import (
-	"flag"
-	"fmt"
+    "flag"
+    "fmt"
 )
 
 // Definerer flag-variablene i hoved-"scope"
 var fahr float64
+var cels float64
+var kelv float64
 var out string
 var funfacts string
 
@@ -14,27 +16,56 @@ var funfacts string
 // er initialisert.
 func init() {
 
-	/*
-	   Her er eksempler på hvordan man implementerer parsing av flagg.
-	   For eksempel, kommando
-	       funtemps -F 0 -out C
-	   skal returnere output: 0°F er -17.78°C
-	*/
+    /*
+       Her er eksempler på hvordan man implementerer parsing av flagg.
+       For eksempel, kommando
+           funtemps -F 0 -out C
+       skal returnere output: 0°F er -17.78°C
+    */
 
-	// Definerer og initialiserer flagg-variablene
-	flag.Float64Var(&fahr, "F", 0.0, "temperatur i grader fahrenheit")
-	// Du må selv definere flag-variablene for "C" og "K"
-	flag.StringVar(&out, "out", "C", "beregne temperatur i C - celsius, F - farhenheit, K- Kelvin")
-	flag.StringVar(&funfacts, "funfacts", "sun", "\"fun-facts\" om sun - Solen, luna - Månen og terra - Jorden")
-	// Du må selv definere flag-variabelen for -t flagget, som bestemmer
-	// hvilken temperaturskala skal brukes når funfacts skal vises
+    // Definerer og initialiserer flagg-variablene
+    flag.Float64Var(&fahr, "F", 0.0, "temperatur i grader fahrenheit")
+    // Du må selv definere flag-variablene for "C" og "K"
+    flag.Float64Var(&cels, "C", 0.0, "temperatur i grader celsius")
+    flag.Float64Var(&kelv, "K", 0.0, "temperatur i grader kelvin")
+    flag.StringVar(&out, "out", "C", "beregne temperatur i C - celsius, F - farhenheit, K- Kelvin")
+    flag.StringVar(&funfacts, "funfacts", "sun", "fun-facts om sun - Solen, luna - Månen og terra - Jorden")
+
+    // Du må selv definere flag-variabelen for -t flagget, som bestemmer
+    // hvilken temperaturskala skal brukes når funfacts skal vises
 
 }
 
+func tmp() string {
+    return "you have selected tmp"
+}
+
+func funtemps() string {
+    return "you have selected funtemps"
+}
+
 func main() {
+    var tmpOrFunTemps string
+    flag.StringVar(&tmpOrFunTemps,"tmpOrFunTemps","","tmp or funtemps?")
+    flag.Parse()
+	if tmpOrFunTemps == "" {
+		fmt.Println("Please choose wether you wish to use temperature converter(tmp) or would like to hear a fun temperature fact(funtemps)")
+		fmt.Scanln(&tmpOrFunTemps)
+	}
 
-	flag.Parse()
 
+	if tmpOrFunTemps != "tmp" && tmpOrFunTemps != "funtemps" {
+		fmt.Println("%s is not a valid function name")
+		return
+	}
+	var result string
+	if tmpOrFunTemps == "tmp"{
+		result = tmp()
+	} else {
+		result = funtemps()
+	}
+	fmt.Println(result)
+}
 	/**
 	    Her må logikken for flaggene og kall til funksjoner fra conv og funfacts
 	    pakkene implementeres.
@@ -54,7 +85,7 @@ func main() {
 	    beskrivelsene av flagg-variablene, som angitt i parameter fire til
 	    funksjonene Float64Var og StringVar
 	*/
-
+/*
 	// Her er noen eksempler du kan bruke i den manuelle testingen
 	fmt.Println(fahr, out, funfacts)
 
@@ -71,9 +102,11 @@ func main() {
 	}
 
 }
+*/
 
 // Funksjonen sjekker om flagget er spesifisert på kommandolinje
 // Du trenger ikke å bruke den, men den kan hjelpe med logikken
+/*
 func isFlagPassed(name string) bool {
 	found := false
 	flag.Visit(func(f *flag.Flag) {
@@ -82,4 +115,4 @@ func isFlagPassed(name string) bool {
 		}
 	})
 	return found
-}
+*/
