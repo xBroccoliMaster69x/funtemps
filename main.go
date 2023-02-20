@@ -12,6 +12,9 @@ var kelv float64
 var out string
 var funfacts string
 
+var tmpOrFunTemps string
+var tmpFunction string
+
 // Bruker init (som anbefalt i dokumentasjonen) for å sikre at flagvariablene
 // er initialisert.
 func init() {
@@ -35,11 +38,62 @@ func init() {
     // hvilken temperaturskala skal brukes når funfacts skal vises
 
 }
-
-func tmp() string {
-    return "you have selected tmp"
+//Definerer funksjoner som outputter strenger baser på tmpfunksjonen som er valgt.
+func FahrenheitToCelsius() string {
+    return "You have selected FahrenheitToCelsius"
 }
 
+func FahrenheitToKelvin() string {
+    return "You have selected FahrenheitToKelvin"
+}
+
+func CelsiusToFahrenheit() string {
+    return "You have selected CelsiusToFahrenheit"
+}
+
+func CelsiusToKelvin() string {
+    return "You have selected CelsiusToKelvin"
+}
+
+func KelvinToFahrenheit() string {
+    return "You have selected KelvinToFahrenheit"
+}
+
+func KelvinToCelsius() string {
+    return "You have selected KelvinToCelsius"
+}
+
+
+//funksjon for valg av tempereaturkonverterings funksjon.
+func tmp() string {
+    var tmpFunction string
+    fmt.Println("Please select a function:")
+    fmt.Println("1. FahrenheitToCelsius")
+    fmt.Println("2. FahrenheitToKelvin")
+    fmt.Println("3. CelsiusToFahrenheit")
+    fmt.Println("4. CelsiusToKelvin")
+    fmt.Println("5. KelvinToFahrenheit")
+    fmt.Println("6. KelvinToCelsius")
+    var input int
+    fmt.Scanln(&input)
+    if input == 1 {
+        tmpFunction = FahrenheitToCelsius()
+    } else if input == 2 {
+        tmpFunction = FahrenheitToKelvin()
+    } else if input == 3 {
+        tmpFunction = CelsiusToFahrenheit()
+    } else if input == 4 {
+        tmpFunction = CelsiusToKelvin()
+    } else if input == 5 {
+        tmpFunction = KelvinToFahrenheit()
+    } else if input == 6 {
+        tmpFunction = KelvinToCelsius()
+    } else {
+        tmpFunction = "Invalid input"
+    }
+    return tmpFunction
+}
+//funksjon som printer om du har valgt funtemps
 func funtemps() string {
     return "you have selected funtemps"
 }
@@ -53,18 +107,15 @@ func main() {
 		fmt.Scanln(&tmpOrFunTemps)
 	}
 
-
-	if tmpOrFunTemps != "tmp" && tmpOrFunTemps != "funtemps" {
-		fmt.Println("%s is not a valid function name")
-		return
-	}
-	var result string
 	if tmpOrFunTemps == "tmp"{
-		result = tmp()
+		tmpFunction = tmp()
+		fmt.Println(tmpFunction)
+	} else if tmpOrFunTemps == "funtemps" {
+		fmt.Println(funtemps())
 	} else {
-		result = funtemps()
+		fmt.Println(tmpOrFunTemps, "is not a valid funciton name")
 	}
-	fmt.Println(result)
+
 }
 	/**
 	    Her må logikken for flaggene og kall til funksjoner fra conv og funfacts
