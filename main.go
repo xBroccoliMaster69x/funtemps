@@ -3,6 +3,7 @@ package main
 import (
     "flag"
     "fmt"
+	"github.com/xBroccoliMaster69x/funtemps/conv"
 )
 
 // Definerer flag-variablene i hoved-"scope"
@@ -38,30 +39,7 @@ func init() {
     // hvilken temperaturskala skal brukes når funfacts skal vises
 
 }
-//Definerer funksjoner som outputter strenger baser på tmpfunksjonen som er valgt.
-func FahrenheitToCelsius() string {
-    return "You have selected FahrenheitToCelsius"
-}
 
-func FahrenheitToKelvin() string {
-    return "You have selected FahrenheitToKelvin"
-}
-
-func CelsiusToFahrenheit() string {
-    return "You have selected CelsiusToFahrenheit"
-}
-
-func CelsiusToKelvin() string {
-    return "You have selected CelsiusToKelvin"
-}
-
-func KelvinToFahrenheit() string {
-    return "You have selected KelvinToFahrenheit"
-}
-
-func KelvinToCelsius() string {
-    return "You have selected KelvinToCelsius"
-}
 
 
 //funksjon for valg av tempereaturkonverterings funksjon.
@@ -77,17 +55,17 @@ func tmp() string {
     var input int
     fmt.Scanln(&input)
     if input == 1 {
-        tmpFunction = FahrenheitToCelsius()
+        tmpFunction = conv.FahrenheitToCelsius()
     } else if input == 2 {
-        tmpFunction = FahrenheitToKelvin()
+        tmpFunction = conv.FahrenheitToKelvin()
     } else if input == 3 {
-        tmpFunction = CelsiusToFahrenheit()
+        tmpFunction = conv.CelsiusToFahrenheit()
     } else if input == 4 {
-        tmpFunction = CelsiusToKelvin()
+        tmpFunction = conv.CelsiusToKelvin()
     } else if input == 5 {
-        tmpFunction = KelvinToFahrenheit()
+        tmpFunction = conv.KelvinToFahrenheit()
     } else if input == 6 {
-        tmpFunction = KelvinToCelsius()
+        tmpFunction = conv.KelvinToCelsius()
     } else {
         tmpFunction = "Invalid input"
     }

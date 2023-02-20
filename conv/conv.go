@@ -1,74 +1,54 @@
 package conv
 
-import ("math")
-
+import "math"
 
 /*
   I denne pakken skal alle konverteringfunksjonene
   implementeres. Bruk engelsk.
-    FarhenheitToCelsius
+    FahrenheitToCelsius
     CelsiusToFahrenheit
-    KelvinToFarhenheit
+    KelvinToFahrenheit
     ...
 */
-func FloatRounded(Value float64) float64 {
-	return math.Round(value*100)/100
 
+func roundFloat(value float64) float64 {
+    return math.Round(value*100)/100
 }
 
-// Konverterer Farhenheit til Celsius
-func FarhenheitToCelsius(value float64) float64 {
-	// Her skal du implementere funksjonen
-	// Du skal ikke formattere float64 i denne funksjonen
-	// Gjør formattering i main.go med fmt.Printf eller
-	// lignende
-  celsius:= (Farhenheit - 32) * (5/9)
-	return FloatRounded(celsius)
+// Konverterer Fahrenheit til Celsius
+func FahrenheitToCelsius(Fahrenheit float64) float64 {
+    celsius:= (Fahrenheit - 32) * (5/9)
+    return roundFloat(celsius)
 }
+
 //konverterer Fahrenheit til Kelvin
-func FarhenheitToKelvin(value float64) float64 {
-	// Her skal du implementere funksjonen
-	// Du skal ikke formattere float64 i denne funksjonen
-	// Gjør formattering i main.go med fmt.Printf eller
-	// lignende
-  kelvin:= (farhenheit - 32) * (5/9) + 273.15
-	return FloatRounded(kelvin)
+func FahrenheitToKelvin(Fahrenheit float64) float64 {
+    kelvin:= (Fahrenheit - 32) * (5/9) + 273.15
+    return roundFloat(kelvin)
 }
+
 //konverterer Celsius til Fahrenheit
-func CelsiusToFahrenheit(value float64) float64 {
-	// Her skal du implementere funksjonen
-	// Du skal ikke formattere float64 i denne funksjonen
-	// Gjør formattering i main.go med fmt.Printf eller
-	// lignende
-  farhenheit:= celsius * (5/9) + 32
-	return FloatRounded(farhenheit)
+func CelsiusToFahrenheit(celsius float64) float64 {
+    fahrenheit:= celsius * (9/5) + 32
+    return roundFloat(fahrenheit)
 }
+
 //konverterer Celsius til Kelvin
-func CelsiusToKelvin(value float64) float64 {
-	// Her skal du implementere funksjonen
-	// Du skal ikke formattere float64 i denne funksjonen
-	// Gjør formattering i main.go med fmt.Printf eller
-	// lignende
-  kelvin:= celsius + 273.15
-	return FloatRounded(kelvin)
+func CelsiusToKelvin(celsius float64) float64 {
+    kelvin:= celsius + 273.15
+    return roundFloat(kelvin)
 }
+
 //konverterer kelvin til celsius
-func KelvinToCelsius(value float64) float64 {
-	// Her skal du implementere funksjonen
-	// Du skal ikke formattere float64 i denne funksjonen
-	// Gjør formattering i main.go med fmt.Printf eller
-	// lignende
-  celsius:= kelvin - 273.15
-	return FloatRounded(celsius)
+func KelvinToCelsius(kelvin float64) float64 {
+    celsius:= kelvin - 273.15
+    return roundFloat(celsius)
 }
-//konverterer kelvin til farhenheit
-func KelvinToFarhenheit(value float64) float64 {
-	// Her skal du implementere funksjonen
-	// Du skal ikke formattere float64 i denne funksjonen
-	// Gjør formattering i main.go med fmt.Printf eller
-	// lignende
-  farhenheit:= (kelvin - 273.15) * (9/5) + 32
-	return FloatRounded(farhenheit)
+
+//konverterer kelvin til fahrenheit
+func KelvinToFahrenheit(value float64) float64 {
+    fahrenheit:= (value - 273.15) * (9/5) + 32
+    return roundFloat(fahrenheit)
 }
 
 // De andre konverteringsfunksjonene implementere her
