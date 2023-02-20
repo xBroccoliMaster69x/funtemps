@@ -22,16 +22,16 @@ func main() {
     var fahr, cels, kelv float64
     var out string
 
-    // Define flag variables
+    // Definerer flag variabler, vet dette staar tidligere men torr ikke fjerne dem.
     flag.Float64Var(&fahr, "F", 0.0, "temperatur i grader fahrenheit")
     flag.Float64Var(&cels, "C", 0.0, "temperatur i grader celsius")
     flag.Float64Var(&kelv, "K", 0.0, "temperatur i grader kelvin")
     flag.StringVar(&out, "out", "C", "beregne temperatur i C - celsius, F - farhenheit, K- Kelvin")
 
-    // Parse flags
+    // Parser flag
     flag.Parse()
 
-    // Check which input flag was set and convert temperature
+    // if statment som sjekker input flag som ble satt og temperaturen den skal convertere fra
     var inputUnit string
     var inputValue float64
 
@@ -49,7 +49,7 @@ func main() {
         return
     }
 
-    // Check which output flag was set and convert temperature
+    //switch statment som sjekker output flagget som ble satt og temperaturen den skal convertere til
     var outputUnit string
     var outputValue float64
 
