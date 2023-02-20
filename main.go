@@ -3,7 +3,7 @@ package main
 import (
     "flag"
     "fmt"
-	"github.com/xBroccoliMaster69x/funtemps/conv"
+	"funtemps/conv"
 )
 
 // Definerer flag-variablene i hoved-"scope"
@@ -16,32 +16,63 @@ var funfacts string
 var tmpOrFunTemps string
 var tmpFunction string
 
-// Bruker init (som anbefalt i dokumentasjonen) for å sikre at flagvariablene
-// er initialisert.
-func init() {
 
-    /*
-       Her er eksempler på hvordan man implementerer parsing av flagg.
-       For eksempel, kommando
-           funtemps -F 0 -out C
-       skal returnere output: 0°F er -17.78°C
-    */
 
-    // Definerer og initialiserer flagg-variablene
+func main() {
+    var fahr, cels, kelv float64
+    var out string
+
+    // Define flag variables
     flag.Float64Var(&fahr, "F", 0.0, "temperatur i grader fahrenheit")
-    // Du må selv definere flag-variablene for "C" og "K"
     flag.Float64Var(&cels, "C", 0.0, "temperatur i grader celsius")
     flag.Float64Var(&kelv, "K", 0.0, "temperatur i grader kelvin")
     flag.StringVar(&out, "out", "C", "beregne temperatur i C - celsius, F - farhenheit, K- Kelvin")
-    flag.StringVar(&funfacts, "funfacts", "sun", "fun-facts om sun - Solen, luna - Månen og terra - Jorden")
 
-    // Du må selv definere flag-variabelen for -t flagget, som bestemmer
-    // hvilken temperaturskala skal brukes når funfacts skal vises
+    // Parse flags
+    flag.Parse()
 
+    // Check which input flag was set and convert temperature
+    var inputUnit string
+    var inputValue float64
+
+    if fahr != 0.0 {
+        inputValue = fahr
+        inputUnit = "F"
+    } else if cels != 0.0 {
+        inputValue = cels
+        inputUnit = "C"
+    } else if kelv != 0.0 {
+        inputValue = kelv
+        inputUnit = "K"
+    } else {
+        fmt.Println("Error: No input temperature provided")
+        return
+    }
+
+    // Check which output flag was set and convert temperature
+    var outputUnit string
+    var outputValue float64
+
+    switch out {
+    case "C":
+        outputUnit = "C"
+        outputValue = conv.KelvinToCelsius(inputValue)
+    case "F":
+        outputUnit = "F"
+        outputValue = conv.KelvinToFahrenheit(inputValue)
+    case "K":
+        outputUnit = "K"
+        outputValue = inputValue
+    default:
+        fmt.Println("Error: Invalid output temperature unit")
+        return
+    }
+
+    // Output result
+    fmt.Printf("%.2f%s is %.2f%s\n", inputValue, inputUnit, outputValue, outputUnit)
 }
 
-
-
+/* kode som jeg i dag fant ut ikke oppnodde oppgave-kravet :)
 //funksjon for valg av tempereaturkonverterings funksjon.
 func tmp() string {
     var tmpFunction string
@@ -55,17 +86,29 @@ func tmp() string {
     var input int
     fmt.Scanln(&input)
     if input == 1 {
-        tmpFunction = conv.FahrenheitToCelsius()
+		fmt.Println("please Select a Fahreneit temperature to convert Celsius")
+        tmpFunction = conv.FahrenheitToCelsius(Fahreneit)
+		return roundFloat(celsius)
     } else if input == 2 {
-        tmpFunction = conv.FahrenheitToKelvin()
+		fmt.Println("please Select a Fahrenheit temperature to convert Kelvin")
+        tmpFunction = conv.FahrenheitToKelvin(Fahreneit)
+		return roundFloat(kelvin)
     } else if input == 3 {
-        tmpFunction = conv.CelsiusToFahrenheit()
+		fmt.Println("please Select a Celsius temperature to convert Fahrenheit")
+        tmpFunction = conv.CelsiusToFahrenheit(Celsius)
+		return roundFloat(fahrenheit)
     } else if input == 4 {
-        tmpFunction = conv.CelsiusToKelvin()
+		fmt.Println("please Select a Celsius temperature to convert Kelvin")
+        tmpFunction = conv.CelsiusToKelvin(Celsius)
+		return roundFloat(kelvin)
     } else if input == 5 {
-        tmpFunction = conv.KelvinToFahrenheit()
+		fmt.Println("please Select a Kelvin temperature to convert Fahrenheit")
+        tmpFunction = conv.KelvinToFahrenheit(Kelvin)
+		return roundFloat(celsius)
     } else if input == 6 {
-        tmpFunction = conv.KelvinToCelsius()
+		fmt.Println("please Select a Kelvin temperature to convert Celsius")
+        tmpFunction = conv.KelvinToCelsius(Kelvin)
+		return roundFloat(fahrenheit)
     } else {
         tmpFunction = "Invalid input"
     }
@@ -95,6 +138,8 @@ func main() {
 	}
 
 }
+*/
+
 	/**
 	    Her må logikken for flaggene og kall til funksjoner fra conv og funfacts
 	    pakkene implementeres.
