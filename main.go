@@ -53,20 +53,53 @@ func main() {
     var outputUnit string
     var outputValue float64
 
-    switch out {
-    case "C":
-        outputUnit = "C"
-        outputValue = conv.KelvinToCelsius(inputValue)
-    case "F":
-        outputUnit = "F"
-        outputValue = conv.KelvinToFahrenheit(inputValue)
-    case "K":
-        outputUnit = "K"
-        outputValue = inputValue
-    default:
-        fmt.Println("Error: Invalid output temperature unit")
-        return
-    }
+    
+        if inputUnit == "K" {
+            switch out {
+            case "C":
+                outputUnit = "C"
+                outputValue = conv.KelvinToCelsius(inputValue)
+            case "F":
+                outputUnit = "F"
+                outputValue = conv.KelvinToFahrenheit(inputValue)
+            case "K":
+                outputUnit = "K"
+                outputValue = inputValue
+            default:
+                fmt.Println("Error: Invalid output temperature unit")
+                return}
+        }else if inputUnit == "C"{
+            switch out {
+            case "K":
+                outputUnit = "K"
+                outputValue = conv.CelsiusToKelvin(inputValue)
+            case "F":
+                outputUnit = "F"
+                outputValue = conv.CelsiusToFahrenheit(inputValue)
+            case "C":
+                outputUnit = "C"
+                outputValue = inputValue
+            default:
+                fmt.Println("Error: Invalid output temperature unit")
+                return}
+        }else if inputUnit == "F"{
+            switch out {
+            case "K":
+                outputUnit = "K"
+                outputValue = conv.FahrenheitToKelvin(inputValue)
+            case "C":
+                outputUnit = "C"
+                outputValue = conv.FahrenheitToCelsius(inputValue)
+            case "F":
+                outputUnit = "F"
+                outputValue = inputValue
+            default:
+                fmt.Println("Error: Invalid output temperature unit")
+                return}
+
+
+        }
+        
 
     // Output result
     fmt.Printf("%.2f%s is %.2f%s\n", inputValue, inputUnit, outputValue, outputUnit)
