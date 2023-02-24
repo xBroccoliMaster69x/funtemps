@@ -17,19 +17,19 @@ func roundFloat(value float64) float64 {
 
 // Konverterer Fahrenheit til Celsius
 func FahrenheitToCelsius(Fahrenheit float64) float64 {
-    celsius:= (Fahrenheit - 32) * (5/9)
+    celsius:= (Fahrenheit - 32.00) * (5.00/9.00)
     return roundFloat(celsius)
 }
 
 //konverterer Fahrenheit til Kelvin
 func FahrenheitToKelvin(Fahrenheit float64) float64 {
-    kelvin:= (Fahrenheit - 32) * (5/9) + 273.15
+    kelvin:= (Fahrenheit - 32.00) * (5.00/9.00) + 273.15
     return roundFloat(kelvin)
 }
 
 //konverterer Celsius til Fahrenheit
 func CelsiusToFahrenheit(celsius float64) float64 {
-    fahrenheit:= celsius * (9/5) + 32
+    fahrenheit:= celsius * (9.00/5.00) + 32.00
     return roundFloat(fahrenheit)
 }
 
@@ -47,7 +47,7 @@ func KelvinToCelsius(kelvin float64) float64 {
 
 //konverterer kelvin til fahrenheit
 func KelvinToFahrenheit(value float64) float64 {
-    fahrenheit:= (value - 273.15) * (9/5) + 32
+    fahrenheit:= (value - 273.15) * (9.00/5.00) + 32.00
     return roundFloat(fahrenheit)
 }
 
